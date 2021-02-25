@@ -10,7 +10,7 @@ jobs: # a collection of steps
     steps:       
       - run: 
          name: echo "install and build npm project"  
-         command: 'npm install'
+         command: 'sudo npm install'
       - run: 
          name: echo "build project"
          command: 'npm run build'
@@ -23,7 +23,7 @@ jobs: # a collection of steps
                 monitor-on-build: true
                 token-variable: SNYKTOKEN
                 organization: panda-not-omar
-                project: circleCi-dotnet-goof
+                project: circleCi-goof
                 severity-threshold: high
   workflows: null     
 #workflows:
