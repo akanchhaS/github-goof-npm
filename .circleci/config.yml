@@ -2,6 +2,11 @@ version: 2.1
 orbs:
   snyk: snyk/snyk@0.0.8
 
+workflows:
+  test-env-vars:
+    jobs:
+      - build:
+          context: Snyk  # has an env var called Snyk-Token
 jobs: # a collection of steps
   build: # runs not using Workflows must have a `build` job as entry point #directory where steps will run
     working_directory: ~/goof  
@@ -18,7 +23,7 @@ jobs: # a collection of steps
       #- run: 
        #  name: echo "build Docker image"
         # command: 'docker build -t my-new-container-goof-image .'
-
+       
       - snyk/scan:
                 fail-on-issues: false
                 monitor-on-build: true
@@ -26,7 +31,7 @@ jobs: # a collection of steps
                 organization: panda-not-omar
                 project: circleCi-goof
                 severity-threshold: high
-  workflows: null     
+   
 #workflows:
   #node-tests:
     #jobs:
