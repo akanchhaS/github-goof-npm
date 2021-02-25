@@ -6,7 +6,7 @@ jobs: # a collection of steps
   build: # runs not using Workflows must have a `build` job as entry point #directory where steps will run
     working_directory: ~/goof  
     docker:       
-      - image: circleci/node@3.0.0        
+      - image: circleci/node:4.8.2       
     steps:       
       - run: 
          name: echo "install and build npm project"  
@@ -25,7 +25,7 @@ jobs: # a collection of steps
                 organization: panda-not-omar
                 project: circleCi-dotnet-goof
                 severity-threshold: high
-       
+  workflows: null     
 #workflows:
   #node-tests:
     #jobs:
