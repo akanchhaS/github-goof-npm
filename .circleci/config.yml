@@ -1,0 +1,38 @@
+version: 2.1
+orbs:
+  snyk: snyk/snyk@0.0.8
+
+jobs: # a collection of steps
+  build: # runs not using Workflows must have a `build` job as entry point #directory where steps will run
+    working_directory: ~/goof  
+    docker:       
+      - image: circleci/node@3.0.0        
+    steps:       
+      - run: 
+         name: echo "install and build npm project"  
+         command: 'npm install'
+      - run: 
+         name: echo "build project"
+         command: 'npm run build'
+      #- run: 
+       #  name: echo "build Docker image"
+        # command: 'docker build -t my-new-container-goof-image .'
+
+      - snyk/scan:
+                fail-on-issues: false
+                monitor-on-build: true
+                token-variable: SNYKTOKEN
+                organization: panda-not-omar
+                project: circleCi-dotnet-goof
+                severity-threshold: high
+       
+#workflows:
+  #node-tests:
+    #jobs:
+     # - node/test
+      #- snyk/scan:
+       #         fail-on-issues: false
+        #        monitor-on-build: true
+         #       token-variable: SNYKTOKEN
+          #      organization: panda-not-omar
+           #     project: circleCi-dotnet-goof
