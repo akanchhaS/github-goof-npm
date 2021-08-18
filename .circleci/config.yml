@@ -31,7 +31,7 @@ jobs: # a collection of steps
                 fail-on-issues: false
                 monitor-on-build: true
                 token-variable: SNYKTOKEN
-                organization: panda-not-omar
+                organization: ninja-snyker
                 project: circleCi-goof
                 severity-threshold: high
 
@@ -52,7 +52,7 @@ jobs: # a collection of steps
                 fail-on-issues: false
                 monitor-on-build: true
                 token-variable: SNYKTOKEN
-                organization: panda-not-omar
+                organization: ninja-snyker
                 project: circleCi-goof-container
                 severity-threshold: low
                 target-file: Dockerfile
