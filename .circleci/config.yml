@@ -20,7 +20,7 @@ jobs: # a collection of steps
       - checkout     
       - run: 
          name: echo "install and build npm project"  
-         command: 'sudo npm install -q'
+         command: 'sudo npm install -g'
       - run: 
          name: echo "build project"
          command: 'npm run build'
