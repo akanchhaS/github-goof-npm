@@ -49,6 +49,7 @@ jobs: # a collection of steps
                 severity-threshold: low
                 target-file: Dockerfile
                 docker-image-name: my-new-container-circleci-goof-image
+                install-alpine-dependencies: true
 docker:
   - image: 'snyk/snyk-cli:npm'
 parameters:
