@@ -1,6 +1,6 @@
 version: 2.1
 orbs:
-  snyk: snyk/snyk@0.0.8
+  snyk: snyk/snyk@1.1.1
 
 workflows: #creating a workflow to define the context - collection of different jobs
   test-env-vars: #setting up a job to define the context which this project will use
@@ -31,7 +31,7 @@ jobs: # a collection of steps
                 fail-on-issues: false
                 monitor-on-build: true
                 token-variable: SNYKTOKEN
-                organization: panda-not-omar
+                organization: ninja-snyker
                 project: circleCi-goof
                 severity-threshold: high
 
@@ -52,7 +52,7 @@ jobs: # a collection of steps
                 fail-on-issues: false
                 monitor-on-build: true
                 token-variable: SNYKTOKEN
-                organization: panda-not-omar
+                organization: ninja-snyker
                 project: circleCi-goof-container
                 severity-threshold: low
                 target-file: Dockerfile
