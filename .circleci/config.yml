@@ -15,19 +15,11 @@ jobs: # a collection of steps
   build-test-monitor-app: # runs not using Workflows must have a `build` job as entry point #directory where steps will run
     working_directory: ~/goof  
     docker:       
-      - image: circleci/node:4.8.2       
+      - image: 'cimg/node:lts'      
     steps:  
-      - checkout     
-      - run: 
-         name: echo "install and build npm project"  
-         command: 'npm install -g'
-      - run: 
-         name: echo "build project"
-         command: 'npm run build'
-      #- run: 
-       #  name: echo "build Docker image"
-        # command: 'docker build -t my-new-container-goof-image .'
-      - snyk/scan:
+       - checkout
+       - run: npm ci
+       - snyk/scan:
                 fail-on-issues: false
                 monitor-on-build: true
                 token-variable: SNYKTOKEN
@@ -39,7 +31,7 @@ jobs: # a collection of steps
   build-test-monitor-docker: # runs not using Workflows must have a `build` job as entry point #directory where steps will run
     #working_directory: ~/goof  
     docker:       
-      - image: circleci/buildpack-deps:stretch       
+      - image: cimg/buildpack-deps:stretch       
     environment: 
       IMAGE_NAME: akanchhaS/goof
     steps:  
@@ -57,6 +49,22 @@ jobs: # a collection of steps
                 severity-threshold: low
                 target-file: Dockerfile
                 docker-image-name: my-new-container-circleci-goof-image
+docker:
+  - image: 'snyk/snyk-cli:npm'
+parameters:
+  args:
+    default: ''
+    description: >
+      See the Snyk CLI help page for information on additional arguments:
+      https://support.snyk.io/hc/en-us/articles/360003812578-CLI-reference
+    type: string
+resource_class: medium
+steps:
+  - checkout
+  - scan:
+      additional-arguments: ' '
+      command: iac test
+      monitor-on-build: false
 
 #workflows:
   #node-tests:
