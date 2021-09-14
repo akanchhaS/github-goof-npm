@@ -31,7 +31,7 @@ jobs: # a collection of steps
   build-test-monitor-docker: # runs not using Workflows must have a `build` job as entry point #directory where steps will run
     #working_directory: ~/goof  
     docker:       
-      - image: node:current-alpine3.14       
+      - image: docker:19.03.13       
     environment: 
       IMAGE_NAME: akanchhaS/goof
     steps:  
@@ -41,6 +41,7 @@ jobs: # a collection of steps
          name: echo "Build Docker image"  
          command: 'docker build -t my-new-container-circleci-goof-image .'
       - snyk/scan:
+                os: alpine
                 fail-on-issues: false
                 monitor-on-build: true
                 token-variable: SNYKTOKEN
