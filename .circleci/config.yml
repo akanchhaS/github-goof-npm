@@ -49,7 +49,6 @@ jobs: # a collection of steps
                 severity-threshold: low
                 target-file: Dockerfile
                 docker-image-name: my-new-container-circleci-goof-image
-
 build-test-monitor-iac:
 docker:
   - image: 'snyk/snyk-cli:npm'
