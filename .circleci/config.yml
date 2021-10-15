@@ -9,6 +9,8 @@ workflows: #creating a workflow to define the context - collection of different 
           context: Snyk  # has an env var called Snyk-Token
       - build-test-monitor-docker: 
           context: Snyk
+      - build-test-iac:
+           context: Snyk
 
 
 jobs: # a collection of steps
@@ -49,23 +51,25 @@ jobs: # a collection of steps
                 severity-threshold: low
                 target-file: Dockerfile
                 docker-image-name: my-new-container-circleci-goof-image
-build-test-monitor-iac:
-docker:
-  - image: 'snyk/snyk-cli:npm'
-parameters:
-  args:
-    default: ''
-    description: >
-      See the Snyk CLI help page for information on additional arguments:
-      https://support.snyk.io/hc/en-us/articles/360003812578-CLI-reference
-    type: string
-resource_class: medium
-steps:
-  - checkout
-  - scan:
-      additional-arguments: ' '
-      command: iac test
-      monitor-on-build: false
+  
+build-test-iac:
+             
+    docker:
+           - image: 'snyk/snyk-cli:npm'
+    parameters:
+          args:
+          default: ''
+          description: >
+                See the Snyk CLI help page for information on additional arguments:
+                https://support.snyk.io/hc/en-us/articles/360003812578-CLI-reference
+          type: string
+          resource_class: medium
+          steps:
+               - checkout
+               - snyk/scan:
+                  additional-arguments: ' '
+                  command: iac test | true
+      
 
 #workflows:
   #node-tests:
