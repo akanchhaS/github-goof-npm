@@ -1,5 +1,5 @@
 # FROM node:6-stretch
-FROM node:current-alpine3.14
+FROM node:17-alpine3.14
 
 RUN mkdir /usr/src
 RUN mkdir /usr/src/goof
