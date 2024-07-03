@@ -37,7 +37,7 @@
     "marked": "0.3.5",
     "method-override": "latest",
     "moment": "^2.29.1",
-    "mongoose": "4.2.4",
+    "mongoose": "5.7.3",
     "morgan": "latest",
     "ms": "^0.7.1",
     "npmconf": "0.0.24",
@@ -49,6 +49,6 @@
   },
   "devDependencies": {
     "browserify": "^13.1.1",
-    "snyk": "^1.244.0"
+    "snyk": "^1.996.0"
   }
 }
